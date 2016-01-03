@@ -1,0 +1,12 @@
+{
+  "name": "webtask-password-sim",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "repository": "",
+  "author": "Theo Despoudis <thdespou@hotmail.com>",
+  "dependencies": {
+    "fast-levenshtein": "^1.1.0",
+    "wt-cli": "^1.1.3"
+  }
+}
