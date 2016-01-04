@@ -1,6 +1,6 @@
 //
 // Install:
-//    $ sudo npm install wt -g
+//    $ npm install wt -g
 //    $ wt init <youremail>
 //    $ wt create password-sim.js --name password-similarity \
 //                        
@@ -9,22 +9,22 @@ var distance = require("fast-levenshtein");
 
 module.exports = function (ctx, callback) {
     
-    // Emperical number to prevent  a lot of false positives
+    // Empirical number to prevent  a lot of false positives
     var MAX_SIMILARITY = 0.7;
    
     // Checks and returns the similarity ration of 2 strings using the `distance` algorithm
     var similarity_ratio = function(a, b) {
         
-        if (!a || !b || !a.length || !b.length) return 0
+        if (!a || !b || !a.length || !b.length) return 0;
   
-        if (a === b) return 1
+        if (a === b) return 1;
   
-        var d = distance.get(a.toLowerCase(), b.toLowerCase())
+        var d = distance.get(a.toLowerCase(), b.toLowerCase());
         
         var longest = Math.max(a.length, b.length)
         
         return (longest-d)/longest
-    }
+    };
     
     // Require only safe params. Can be extended to require more parameters
     var safe_params = ['password', 'username', 'email'];
@@ -45,9 +45,9 @@ module.exports = function (ctx, callback) {
             }
         }
         else {
-            continue;
+            return callback(new Error('The `' + safe_params[param] + '` parameter value is missing.'));
         }
     }
     // Nothing similar with that password
     return callback(null, { verdict: true});
-}
+};
